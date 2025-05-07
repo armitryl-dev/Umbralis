@@ -39,7 +39,7 @@ fun UmbralisNavHost() {
             }
         }
         composable("loginScreen") {
-            backgroundLoginScreen()
+            LoginScreenUI()
         }
     }
 }
