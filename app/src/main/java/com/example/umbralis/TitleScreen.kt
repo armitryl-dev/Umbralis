@@ -32,17 +32,17 @@ class TitleScreen : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            titleScreenContent()
+            titleScreenContent {}
         }
     }
 }
 
 @Composable
-fun titleScreenContent() {
+fun titleScreenContent(onNavigateToLogin: () -> Unit = {}) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .clickable {  }
+            .clickable { onNavigateToLogin() }
     ) {
         backgroundTitleScreen()
         logoTitleScreen()
