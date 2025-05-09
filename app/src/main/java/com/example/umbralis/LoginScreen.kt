@@ -72,7 +72,7 @@ fun LoginScreenUI(navController: NavController) {
 
             AndroidEditText(hint = "Contraseña")
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             Text(
                 text = "¿CONTRASEÑA OLVIDADA?",
@@ -83,7 +83,7 @@ fun LoginScreenUI(navController: NavController) {
             Spacer(modifier = Modifier.height(16.dp))
 
             AndroidStyledButton("INICIAR SESIÓN") {
-
+                navController.navigate("CharacterSelectionScreenUI")
             }
 
             Spacer(modifier = Modifier.height(16.dp))

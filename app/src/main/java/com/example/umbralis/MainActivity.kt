@@ -48,5 +48,8 @@ fun UmbralisNavHost() {
         composable("registerScreen") {
             RegisterScreenUI(navController)
         }
+        composable("CharacterSelectionScreenUI") {
+            CharacterSelectionScreenUI()
+        }
     }
 }

@@ -64,15 +64,15 @@ fun RegisterScreenUI(navController: NavController) {
 
             AndroidEditText(hint = "Usuario")
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             AndroidEditText(hint = "Contraseña")
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             AndroidEditText(hint = "Repita la contraseña")
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             AndroidStyledButton("CREAR CUENTA") {
                 navController.navigate("loginScreen")
