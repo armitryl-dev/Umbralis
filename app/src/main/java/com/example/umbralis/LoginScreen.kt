@@ -18,8 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
-import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -27,24 +25,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.core.view.marginBottom
-import com.example.umbralis.R
-
-class LoginScreen : ComponentActivity() {
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            LoginScreenUI()
-        }
-    }
-}
+import androidx.navigation.NavController
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun LoginScreenUI() {
+fun LoginScreenUI(navController: NavController) {
     val cinzel = FontFamily(Font(R.font.cinzel))
-    val nightmare = FontFamily(Font(R.font.nightmare_pills))
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -60,7 +46,7 @@ fun LoginScreenUI() {
                 .padding(32.dp)
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top // <-- Aquí el cambio
+            verticalArrangement = Arrangement.Top
         ) {
 
             Image(
@@ -82,7 +68,7 @@ fun LoginScreenUI() {
 
             AndroidEditText(hint = "Usuario")
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             AndroidEditText(hint = "Contraseña")
 
@@ -96,7 +82,9 @@ fun LoginScreenUI() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            AndroidStyledButton("INICIAR SESIÓN")
+            AndroidStyledButton("INICIAR SESIÓN") {
+
+            }
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -106,10 +94,11 @@ fun LoginScreenUI() {
                 color = Color.White
             )
 
+            Spacer(modifier = Modifier.height(16.dp))
 
-            Spacer(modifier = Modifier.height(8.dp))
-
-            AndroidStyledButton("REGISTRARSE")
+            AndroidStyledButton("REGISTRARSE") {
+                navController.navigate("registerScreen")
+            }
         }
     }
 }
@@ -138,7 +127,7 @@ fun AndroidEditText(hint: String) {
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun AndroidStyledButton(text: String) {
+fun AndroidStyledButton(text: String, onClick: () -> Unit) {
     val context = LocalContext.current
     AndroidView(
         modifier = Modifier
@@ -151,14 +140,8 @@ fun AndroidStyledButton(text: String) {
                 setBackgroundResource(R.drawable.button_style)
                 textSize = 16f
                 typeface = context.resources.getFont(R.font.nightmare_pills)
+                setOnClickListener { onClick() }
             }
         }
     )
-}
-
-@RequiresApi(Build.VERSION_CODES.O)
-@Preview
-@Composable
-fun PreviewLoginScreen() {
-    LoginScreenUI()
 }

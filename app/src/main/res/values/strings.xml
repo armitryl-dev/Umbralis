@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Umbralis</string>
+    <string name="userHint">Usuario</string>
 </resources>
